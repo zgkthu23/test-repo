@@ -8,9 +8,14 @@ jobs:
       - name: read repo content
         uses: actions/checkout@v7
 
-      - name: install dependencies
-        run: npm install
+      - name: install dependencies and package
+        run: |
+        npm install
+        npm run build
 
-      - name: build projects
-        run: npm run build
+      - name: deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./dist
+          branch: gh-pages
         
