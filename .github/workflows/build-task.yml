@@ -10,8 +10,8 @@ jobs:
 
       - name: install dependencies and package
         run: |
-        npm install
-        npm run build
+          npm install
+          npm run build
 
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4
