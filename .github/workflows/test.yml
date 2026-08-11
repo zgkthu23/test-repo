@@ -10,13 +10,16 @@ jobs:
   inspect:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect env
+      - name: Before checkout
         run: |
-          echo "Github event:${{github.event_name}}"
-          echo "Runner OS: ${{ runner.os }}"
-          echo "Runner architecture: ${{ runner.arch }}"
-          echo "Workspace: $GITHUB_WORKSPACE"
-
+          echo "Before checkout"
           pwd
           ls -la
-
+      - name: Checkout
+        uses: actions/checkout@v7
+      # This is a comment
+      - name: After checkout
+        run: |
+          echo "After checkout"
+          pwd
+          ls -la
