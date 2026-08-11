@@ -8,22 +8,20 @@ on:
 
 jobs:
   inspect:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Before checkout
-        run: |
-          echo "Before checkout"
-          pwd
-          ls -la
-      - name: Checkout
-        uses: actions/checkout@v7
-      # This is a comment
-      - name: After checkout
-        run: |
-          echo "After checkout"
-          pwd
-          ls -la
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            label: Windows-x64
 
-          git status
-          git log --all --oneline --graph
-          cat .git/HEAD
+          - os: macos-15
+            label: macOS-arm64
+
+    runs-on: ${{matrix.os}}
+    steps:
+      - name: Print matrix
+        run: |
+          echo "matrix.os = ${{matrix.os}}"
+          echo "runner.os = ${{runner.os}}"
+        
