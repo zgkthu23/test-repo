@@ -23,3 +23,7 @@ jobs:
           echo "After checkout"
           pwd
           ls -la
+
+          git status
+          git log --all --oneline --graph
+          cat .git/HEAD
