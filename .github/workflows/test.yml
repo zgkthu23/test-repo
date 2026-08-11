@@ -1,0 +1,19 @@
+name: Inspect runner
+on:
+  workflow_dispatch:
+
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect env
+        run: |
+          echo "Github event:${{github.event_name}}"
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Runner architecture: ${{ runner.arch }}"
+          echo "Workspace: $GITHUB_WORKSPACE"
+
+          pwd
+          ls -la
+
