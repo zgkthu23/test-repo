@@ -1,5 +1,8 @@
 name: Inspect runner
 on:
+  push:
+    branches:
+      - tmp
   workflow_dispatch:
 
 
