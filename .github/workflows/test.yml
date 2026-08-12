@@ -7,21 +7,17 @@ on:
 
 
 jobs:
-  inspect:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: windows-latest
-            label: Windows-x64
-
-          - os: macos-15
-            label: macOS-arm64
-
-    runs-on: ${{matrix.os}}
+  test:
+   
+    runs-on: ubuntu-latest
+    env:
+      MY_VALUE: "123"
+      PYTHONUTF8: "1"
     steps:
       - name: Print matrix
         run: |
-          echo "matrix.os = ${{matrix.os}}"
-          echo "runner.os = ${{runner.os}}"
-        
+          echo "$MY_VALUE"          
+          echo "$PYTHONUTF8"
+      - name: Python see variables
+        run: |
+          python -c "import os; print(os.environ['MY_VALUE'])"
