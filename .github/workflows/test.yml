@@ -21,3 +21,5 @@ jobs:
           which python
           python --version
           python -m pip --version
+          python -c "import locale; print(locale.getpreferredencoding())"
+          python -c "import sys;print(sys.stdin.encoding)"
