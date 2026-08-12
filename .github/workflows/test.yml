@@ -6,7 +6,10 @@ on:
 
 jobs:
   python:
-    runs-on: windows-latest
+    stragety:
+      matrix:
+        os: [windows-latest, macos-15]
+    runs-on: ${{matrix.os}}
 
     steps:
       - uses: actions/checkout@v7
