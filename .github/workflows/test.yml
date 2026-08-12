@@ -20,16 +20,20 @@ jobs:
           cache: pip
 
       - name: Inspect Python
+        shell: python
         env:
           DEMO_SECRET: ${{secrets.DEMO_SECRET}}
         run: |
-          which python
-          python --version
-          python -c "
+          x = 1 + 2
+          print(x)
           import os
           value = os.environ.get('DEMO_SECRET', '')
           print('secret exists:', bool(value))
           print('secret length:', len(value))
           print(value)
-          "
+      - name: Bash code
+        shell: bash
+        run: |
+          x=10
+          echo "$x"
 
