@@ -1,23 +1,23 @@
-name: Inspect runner
-on:
-  push:
-    branches:
-      - tmp
-  workflow_dispatch:
+name: 05 - Python setup
 
+on:
+  workflow_dispatch:
+  push:
 
 jobs:
-  test:
-   
+  python:
     runs-on: ubuntu-latest
-    env:
-      MY_VALUE: "123"
-      PYTHONUTF8: "1"
+
     steps:
-      - name: Print matrix
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Inspect Python
         run: |
-          echo "$MY_VALUE"          
-          echo "$PYTHONUTF8"
-      - name: Python see variables
-        run: |
-          python -c "import os; print(os.environ['MY_VALUE'])"
+          which python
+          python --version
+          python -m pip --version
