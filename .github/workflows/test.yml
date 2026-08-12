@@ -1,11 +1,29 @@
-on: push
+name: 05 - Python setup
+
+on:
+  workflow_dispatch:
+  push:
+
 jobs:
-  job1:
-    runs-on: ubuntu-latest
+  python:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-15, ubuntu-latest]
+    runs-on: ${{matrix.os}}
+
     steps:
-      - run: pwd
-      - run: ls
-  job2:
-    runs-on: windows-latest
-    steps:
-      - run: node -v
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Inspect Python
+        run: |
+          which python
+          python --version
+          python -m pip --version
+          python -c "import locale; print(locale.getpreferredencoding())"
+          python -c "import sys;print(sys.stdin.encoding)"
+
