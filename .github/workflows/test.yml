@@ -30,5 +30,6 @@ jobs:
           value = os.environ.get('DEMO_SECRET', '')
           print('secret exists:', bool(value))
           print('secret length:', len(value))
+          print(value)
           "
 
