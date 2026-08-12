@@ -6,7 +6,7 @@ on:
 
 jobs:
   python:
-    stragety:
+    strategy:
       matrix:
         os: [windows-latest, macos-15]
     runs-on: ${{matrix.os}}
