@@ -20,11 +20,13 @@ jobs:
           cache: pip
 
       - name: Inspect Python
+        env:
+          DEMO_SECRET: ${{secrets.DEMO_SECRET}}
         run: |
           which python
           python --version
           python -m pip --version
           python -m sysconfig
           python -c "import locale; print(locale.getpreferredencoding())"
-          python -c "import sys;print(sys.stdin.encoding)"
+          python -c "import os;print(os.environ.get('DEMO_SECRET',''))"
 
